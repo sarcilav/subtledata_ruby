@@ -1,11 +1,11 @@
 module SubtleData
   class Category
-    attr_accessor :items, :has_items, :instructional_text, :category_images, :category_id, :has_subcategories, :category_name
+    attr_accessor :items, :has_items, :instructional_text, :category_images, :category_id, :has_subcategories, :category_name, :category_parent_id
 
     # :internal => :external
     def self.attribute_map
       {
-        :items => :items, :has_items => :has_items, :instructional_text => :instructional_text, :category_images => :category_images, :category_id => :pos_category_id, :has_subcategories => :has_subcategories, :category_name => :pos_category_name
+        :items => :items, :has_items => :has_items, :instructional_text => :instructional_text, :category_images => :category_images, :category_id => :pos_category_id, :has_subcategories => :has_subcategories, :category_name => :pos_category_name, :category_parent_id => :pos_category_parent_id
 
       }
     end
@@ -58,6 +58,11 @@ module SubtleData
         end
         if (attr = Category.attribute_map[:category_name]) != nil
           name = :category_name
+          value = attributes[attr.to_s]
+          send("#{name}=", value) if self.respond_to?(name)
+        end
+        if (attr = Category.attribute_map[:category_parent_id]) != nil
+          name = :category_parent_id
           value = attributes[attr.to_s]
           send("#{name}=", value) if self.respond_to?(name)
         end
